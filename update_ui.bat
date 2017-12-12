@@ -1,0 +1,1 @@
+pyuic5 -o main_window.py ixtopor_main_window.ui

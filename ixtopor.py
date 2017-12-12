@@ -155,6 +155,6 @@ class Ixtopor:
         # self.commands_being_played = self.commands
         for i, command in enumerate(self.commands):
             print(command)
-            time.sleep(1)
+            time.sleep(1)  # melhoria: tornar espera por comando não-blocante
             self.ui.progressBar.setValue(round(100*(i+1))/len(self.commands))
         self.ui.textEdit.setEnabled(True)

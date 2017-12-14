@@ -2,8 +2,6 @@ import sys
 from main_window import Ui_MainWindow
 from ixtopor import *
 
-import ide
-
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *

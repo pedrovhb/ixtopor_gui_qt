@@ -1,4 +1,4 @@
-
+import serial
 import time
 
 # Flags binárias - para que mais de uma direção possa estar ativa ao mesmo tempo.
@@ -8,6 +8,7 @@ import time
 
 flag_right, flag_up, flag_left, flag_down = 0b0001, 0b0010, 0b0100, 0b1000
 flag_claw_cw, flag_claw_ccw, flag_base_cw, flag_base_ccw = 0b0001, 0b0010, 0b0100, 0b1000
+
 
 class Ixtopor:
 
@@ -21,6 +22,10 @@ class Ixtopor:
 
         self.commands = []  # para código
         self.commands_being_played = []
+
+        #self.ser = serial.Serial()
+
+
 
     def updateLinearSpeed(self, percentage):
         self.linearSpeed = round(0.01 * percentage * self.maxLinearSpeed)
@@ -58,7 +63,7 @@ class Ixtopor:
         lower_text = text.lower()
         for i, line in enumerate(lower_text.split('\n')):
 
-            if line == '':
+            if line == '' or line.startswith(';'):
                 continue
 
             parts = line.rstrip(' ').split(' ')
@@ -155,6 +160,7 @@ class Ixtopor:
         # self.commands_being_played = self.commands
         for i, command in enumerate(self.commands):
             print(command)
-            time.sleep(1)  # melhoria: tornar espera por comando não-blocante
+            #self.ui.textBrowser.setText('\n'.join(command))
+            time.sleep(1.5)  # melhoria: tornar espera por comando não-blocante
             self.ui.progressBar.setValue(round(100*(i+1))/len(self.commands))
         self.ui.textEdit.setEnabled(True)
